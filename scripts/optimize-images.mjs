@@ -23,9 +23,18 @@ for (const file of files) {
 
   const beforeSize = fs.statSync(inputPath).size
 
-  // 最大幅1920px（縮小のみ）、WebP quality 95 で高画質変換
-  await sharp(inputPath)
-    .resize({ width: 1920, withoutEnlargement: true })
+  // EXIF方向を適用してから変換（縦横が正しく保たれる）
+  const image = sharp(inputPath).rotate()
+  const meta = await image.clone().metadata()
+  const isPortrait = (meta.height ?? 0) > (meta.width ?? 0)
+
+  await image
+    .resize({
+      // 縦画像は高さ基準、横画像は幅基準で1920px上限
+      ...(isPortrait
+        ? { height: 1920, withoutEnlargement: true }
+        : { width: 1920, withoutEnlargement: true }),
+    })
     .webp({ quality: 95, effort: 6 })
     .toFile(outputPath)
 
