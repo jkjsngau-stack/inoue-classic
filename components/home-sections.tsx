@@ -65,20 +65,24 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ height: "100dvh", minHeight: "100svh" }}
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
           alt="高級エクステリア建築"
           fill
+          sizes="100vw"
           className={cn(
             "object-cover transition-all duration-[2000ms]",
             isLoaded ? "scale-100 opacity-100" : "scale-110 opacity-0"
           )}
           priority
         />
-        <div className="absolute inset-0 bg-foreground/30" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}

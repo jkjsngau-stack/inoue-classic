@@ -41,14 +41,19 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled ? "bg-background/95 backdrop-blur-sm" : "bg-transparent"
+          isScrolled
+            ? "bg-background/95 backdrop-blur-sm"
+            : "bg-black/40"
         )}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-6">
           {/* Logo */}
-          <Link 
-            href="/" 
-            className="font-serif text-lg md:text-xl tracking-wider text-foreground hover:text-accent transition-colors duration-300"
+          <Link
+            href="/"
+            className={cn(
+              "font-serif text-lg md:text-xl tracking-wider transition-colors duration-300 hover:text-accent",
+              isScrolled ? "text-foreground" : "text-white"
+            )}
           >
             Inoue.Co.ltd
           </Link>
@@ -63,7 +68,9 @@ export function Header() {
                   "text-xs tracking-[0.2em] uppercase transition-colors duration-300",
                   pathname === item.href
                     ? "text-accent"
-                    : "text-foreground/70 hover:text-foreground"
+                    : isScrolled
+                      ? "text-foreground/70 hover:text-accent"
+                      : "text-white/80 hover:text-accent"
                 )}
               >
                 {item.label}
@@ -79,13 +86,15 @@ export function Header() {
           >
             <span
               className={cn(
-                "w-6 h-px bg-foreground transition-all duration-300",
+                "w-6 h-px transition-all duration-300",
+                isScrolled ? "bg-foreground" : "bg-white",
                 isMenuOpen && "rotate-45 translate-y-[4px]"
               )}
             />
             <span
               className={cn(
-                "w-6 h-px bg-foreground transition-all duration-300",
+                "w-6 h-px transition-all duration-300",
+                isScrolled ? "bg-foreground" : "bg-white",
                 isMenuOpen && "-rotate-45 -translate-y-[3px]"
               )}
             />
@@ -94,7 +103,7 @@ export function Header() {
 
         {/* Thin line under header */}
         <div className={cn(
-          "h-px bg-foreground/10 transition-opacity duration-500",
+          "h-px bg-white/10 transition-opacity duration-500",
           isScrolled ? "opacity-100" : "opacity-0"
         )} />
       </header>
