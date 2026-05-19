@@ -1,3 +1,4 @@
+import sharp from "sharp"
 import fs from "fs"
 import path from "path"
 import Image from "next/image"
@@ -5,15 +6,40 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
-export default function WorksPage() {
+type WorkImage = {
+  file: string
+  width: number
+  height: number
+}
+
+async function getImages(): Promise<WorkImage[]> {
   const worksDir = path.join(process.cwd(), "public/images/works")
-  let images: string[] = []
+  let files: string[] = []
   try {
-    images = fs
+    files = fs
       .readdirSync(worksDir)
       .filter((f) => /\.(jpg|jpeg|png|webp|gif)$/i.test(f))
       .sort()
-  } catch {}
+  } catch {
+    return []
+  }
+
+  const images: WorkImage[] = []
+  for (const file of files) {
+    try {
+      const meta = await sharp(path.join(worksDir, file)).metadata()
+      images.push({ file, width: meta.width ?? 800, height: meta.height ?? 600 })
+    } catch {}
+  }
+  return images
+}
+
+export default async function WorksPage() {
+  const images = await getImages()
+
+  // 2列マソンリー用に奇数・偶数インデックスで分割
+  const leftCol = images.filter((_, i) => i % 2 === 0)
+  const rightCol = images.filter((_, i) => i % 2 === 1)
 
   return (
     <main className="min-h-screen">
@@ -40,25 +66,43 @@ export default function WorksPage() {
         {images.length === 0 ? (
           <p className="text-muted-foreground text-sm">施工事例を準備中です。</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {images.map((file, index) => (
-              <ScrollReveal key={file} delay={(index % 4) * 80}>
-                <div className="group">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+          /* マソンリーグリッド：各列を独立したフレックスカラムで積む */
+          <div className="flex gap-4 md:gap-8 items-start">
+            {/* 左列 */}
+            <div className="flex-1 flex flex-col gap-4 md:gap-8">
+              {leftCol.map((img, i) => (
+                <ScrollReveal key={img.file} delay={i * 60}>
+                  <div className="overflow-hidden group">
                     <Image
-                      src={`/images/works/${file}`}
-                      alt={`施工事例 ${index + 1}`}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      src={`/images/works/${img.file}`}
+                      alt={`施工事例 ${i * 2 + 1}`}
+                      width={img.width}
+                      height={img.height}
+                      style={{ width: "100%", height: "auto", display: "block" }}
+                      className="transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-500" />
                   </div>
-                  <div className="mt-4">
-                    <p className="font-serif text-lg">施工事例 {index + 1}</p>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* 右列 */}
+            <div className="flex-1 flex flex-col gap-4 md:gap-8 mt-12 md:mt-20">
+              {rightCol.map((img, i) => (
+                <ScrollReveal key={img.file} delay={i * 60 + 30}>
+                  <div className="overflow-hidden group">
+                    <Image
+                      src={`/images/works/${img.file}`}
+                      alt={`施工事例 ${i * 2 + 2}`}
+                      width={img.width}
+                      height={img.height}
+                      style={{ width: "100%", height: "auto", display: "block" }}
+                      className="transition-transform duration-700 group-hover:scale-105"
+                    />
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         )}
       </section>

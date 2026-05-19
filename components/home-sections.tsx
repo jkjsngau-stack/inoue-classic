@@ -39,21 +39,21 @@ const featuredWorks = [
     title: "施工事例",
     location: "北陸",
     category: "エクステリア",
-    image: "/images/works/S__15966213_0.jpg",
+    image: "/images/works/S__15966213_0.webp",
   },
   {
     id: 2,
     title: "施工事例",
     location: "北陸",
     category: "モルタル造形",
-    image: "/images/works/S__15966220_0.jpg",
+    image: "/images/works/S__15966220_0.webp",
   },
   {
     id: 3,
     title: "施工事例",
     location: "北陸",
     category: "MORTEX",
-    image: "/images/works/S__15966228_0.jpg",
+    image: "/images/works/S__15966228_0.webp",
   },
 ]
 
