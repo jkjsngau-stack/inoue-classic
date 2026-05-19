@@ -9,27 +9,27 @@ import { cn } from "@/lib/utils"
 const services = [
   {
     number: "01",
-    title: "エクステリアデザイン",
-    titleJa: "Exterior Design",
+    title: "外構工事",
+    titleJa: "Exterior Construction",
     description: "建築と自然を融合させた、洗練された屋外空間を創造します。",
   },
   {
     number: "02",
-    title: "モルタル造形",
-    titleJa: "Mortar Sculpture",
-    description: "職人の技によるモルタル造形で、空間を唯一無二の造形美へと変貌させます。",
+    title: "TFシリーズ認定施工店",
+    titleJa: "TF WALL Certified",
+    description: "TFシリーズの高品質な仕上げを、認定施工店として確かな技術でご提供します。",
   },
   {
     number: "03",
-    title: "MORTEX施工",
-    titleJa: "MORTEX Application",
+    title: "MORTEX認定施工店",
+    titleJa: "MORTEX Certified",
     description: "優れた耐久性と審美性を兼ね備えたプレミアムミネラルコーティング施工。",
   },
   {
     number: "04",
-    title: "エイジング塗装",
-    titleJa: "Aging Finish",
-    description: "熟練の技で現代空間に時を超えた風格を与えるエイジング仕上げ。",
+    title: "モルタル造形",
+    titleJa: "Mortar Sculpture",
+    description: "職人の技によるモルタル造形で、空間を唯一無二の造形美へと変貌させます。",
   },
 ]
 

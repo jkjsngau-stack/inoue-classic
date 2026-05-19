@@ -124,12 +124,10 @@ export default function AboutPage() {
             <ScrollReveal delay={200}>
               <ul className="space-y-6">
                 {[
-                  { title: "エクステリアデザイン", ja: "Exterior Design" },
-                  { title: "外構工事", ja: "Landscape Construction" },
+                  { title: "外構工事", ja: "Exterior Construction" },
+                  { title: "TFシリーズ認定施工店", ja: "TF WALL Certified" },
+                  { title: "MORTEX認定施工店", ja: "MORTEX Certified" },
                   { title: "モルタル造形", ja: "Mortar Sculpture" },
-                  { title: "MORTEX施工", ja: "MORTEX Application" },
-                  { title: "エイジング塗装", ja: "Aging Paint Finish" },
-                  { title: "内装工事", ja: "Interior Works" },
                 ].map((service, index) => (
                   <li
                     key={index}
