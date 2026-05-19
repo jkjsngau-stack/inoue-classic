@@ -128,6 +128,7 @@ export default function AboutPage() {
                   { title: "TFシリーズ認定施工店", ja: "TF WALL Certified" },
                   { title: "MORTEX認定施工店", ja: "MORTEX Certified" },
                   { title: "モルタル造形", ja: "Mortar Sculpture" },
+                  { title: "リノベーション", ja: "Renovation" },
                 ].map((service, index) => (
                   <li
                     key={index}

@@ -31,6 +31,12 @@ const services = [
     titleJa: "Mortar Sculpture",
     description: "職人の技によるモルタル造形で、空間を唯一無二の造形美へと変貌させます。",
   },
+  {
+    number: "05",
+    title: "リノベーション",
+    titleJa: "Renovation",
+    description: "既存の空間に新たな価値を吹き込む、こだわりのリノベーション施工。",
+  },
 ]
 
 const featuredWorks = [
