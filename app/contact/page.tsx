@@ -15,17 +15,30 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormState({ name: "", email: "", phone: "", message: "" })
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      })
+      if (res.ok) {
+        setIsSubmitted(true)
+        setFormState({ name: "", email: "", phone: "", message: "" })
+      } else {
+        setError("送信に失敗しました。お手数ですがお電話にてご連絡ください。")
+      }
+    } catch {
+      setError("送信に失敗しました。お手数ですがお電話にてご連絡ください。")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -190,6 +203,10 @@ export default function ContactPage() {
                       placeholder="プロジェクトについてお聞かせください"
                     />
                   </div>
+
+                  {error && (
+                    <p className="text-sm text-red-500">{error}</p>
+                  )}
 
                   <div className="pt-4">
                     <button

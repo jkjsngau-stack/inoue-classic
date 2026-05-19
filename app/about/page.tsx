@@ -58,8 +58,8 @@ export default function AboutPage() {
           <div className="md:col-span-6 md:col-start-7">
             <ScrollReveal delay={200}>
               <p className="font-serif text-2xl md:text-3xl leading-relaxed">
-                北陸の中心で創業したInoue.Co.ltdは、日本のエクステリアデザインに
-                ヨーロッパの洗練をもたらします。
+                北陸を拠点に、住宅・店舗・商業施設の外構・内装工事を手がけています。
+                素材へのこだわりと職人の技術で、お客様の理想の空間を実現します。
               </p>
             </ScrollReveal>
             <ScrollReveal delay={300}>

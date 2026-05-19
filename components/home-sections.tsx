@@ -36,24 +36,24 @@ const services = [
 const featuredWorks = [
   {
     id: 1,
-    title: "個人住宅",
-    location: "金沢",
+    title: "施工事例",
+    location: "北陸",
     category: "エクステリア",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+    image: "/images/works/S__15966213_0.jpg",
   },
   {
     id: 2,
-    title: "ガーデンテラス",
-    location: "加賀",
-    category: "ランドスケープ",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+    title: "施工事例",
+    location: "北陸",
+    category: "モルタル造形",
+    image: "/images/works/S__15966220_0.jpg",
   },
   {
     id: 3,
-    title: "商業施設",
-    location: "福井",
+    title: "施工事例",
+    location: "北陸",
     category: "MORTEX",
-    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80",
+    image: "/images/works/S__15966228_0.jpg",
   },
 ]
 
@@ -156,8 +156,9 @@ export function ServicesSection() {
             </h2>
           </div>
           <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-            エクステリアデザインから職人仕上げまで、北陸の各プロジェクトに
-            ヨーロッパの洗練をお届けします。
+            北陸を拠点に、エクステリア・内装・外構工事を手がけています。
+            モルタル造形・MORTEX・エイジング塗装など、
+            素材と技術にこだわった空間づくりをご提供します。
           </p>
         </div>
       </ScrollReveal>
