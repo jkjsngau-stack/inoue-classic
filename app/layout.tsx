@@ -16,11 +16,36 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 })
 
+const siteUrl = 'https://inoue-classic.vercel.app'
+
 export const metadata: Metadata = {
   title: 'Inoue.Co.ltd | Crafting Space. Defining Beauty.',
   description: 'エクステリア・外構工事・モルタル造形・MORTEX施工。北陸の高級外構デザインを手がけるInoue.Co.ltd。空間を創り、美しさを定義する。',
   generator: 'v0.app',
   keywords: ['エクステリア', '外構工事', 'モルタル造形', 'MORTEX', '北陸', '石川県', '加賀市'],
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'Inoue.Co.ltd',
+    title: 'Inoue.Co.ltd | Crafting Space. Defining Beauty.',
+    description: 'エクステリア・外構工事・モルタル造形・MORTEX施工。北陸の高級外構デザインを手がけるInoue.Co.ltd。空間を創り、美しさを定義する。',
+    images: [
+      {
+        url: '/ogp.jpg',
+        width: 1024,
+        height: 1536,
+        alt: 'Inoue.Co.ltd | Crafting Space. Defining Beauty.',
+      },
+    ],
+    locale: 'ja_JP',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Inoue.Co.ltd | Crafting Space. Defining Beauty.',
+    description: 'エクステリア・外構工事・モルタル造形・MORTEX施工。北陸の高級外構デザインを手がけるInoue.Co.ltd。空間を創り、美しさを定義する。',
+    images: ['/ogp.jpg'],
+  },
   icons: {
     icon: [
       {
