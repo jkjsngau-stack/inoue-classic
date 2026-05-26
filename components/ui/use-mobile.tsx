@@ -2,18 +2,16 @@ import * as React from 'react'
 
 const MOBILE_BREAKPOINT = 768
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+const getSnapshot = () => window.innerWidth < MOBILE_BREAKPOINT
 
-  React.useEffect(() => {
+const getServerSnapshot = () => false
+
+export function useIsMobile() {
+  const subscribe = React.useCallback((notify: () => void) => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    }
-    mql.addEventListener('change', onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener('change', onChange)
+    mql.addEventListener('change', notify)
+    return () => mql.removeEventListener('change', notify)
   }, [])
 
-  return !!isMobile
+  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }

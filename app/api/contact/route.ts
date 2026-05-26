@@ -8,19 +8,27 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "必須項目が不足しています" }, { status: 400 })
   }
 
+  const mailUser = process.env.MAIL_USER
+  const mailPass = process.env.MAIL_PASS
+
+  if (!mailUser || !mailPass) {
+    console.error("Mail env is not configured")
+    return NextResponse.json({ error: "送信設定が未設定です" }, { status: 500 })
+  }
+
   const transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com",
     port: 587,
     secure: false,
     auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
+      user: mailUser,
+      pass: mailPass,
     },
   })
 
   try {
     await transporter.sendMail({
-      from: `"Inoue.Co.ltd Website" <${process.env.MAIL_USER}>`,
+      from: `"Inoue.Co.ltd Website" <${mailUser}>`,
       to: "inoue.co.ltd@live.jp",
       replyTo: email,
       subject: `【お問い合わせ】${name}様より`,

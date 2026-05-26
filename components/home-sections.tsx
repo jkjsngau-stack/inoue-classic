@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ScrollReveal } from "@/components/scroll-reveal"
@@ -64,11 +64,7 @@ const featuredWorks = [
 ]
 
 export function HeroSection() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+  const [isLoaded] = useState(true)
 
   return (
     <section
