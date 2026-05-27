@@ -12,6 +12,36 @@ type WorkImage = {
   height: number
 }
 
+const excludedWorkImages = new Set([
+  // Promotional graphics and unrelated logos/illustrations kept in the folder but hidden from the works gallery.
+  "S__15966213_0.webp",
+  "S__15966214_0.webp",
+  "S__15966218_0.webp",
+  "S__15966219_0.webp",
+  "S__38625288.webp",
+  "S__41648190_0.webp",
+  "S__41648192_0.webp",
+  "S__41648193_0.webp",
+  "S__41648194_0.webp",
+  "S__41648195_0.webp",
+  "S__41648196_0.webp",
+  "S__41648197_0.webp",
+  "S__41648203.webp",
+  "S__41664525.webp",
+  "S__4194369.webp",
+  "S__4194370.webp",
+  "S__4194371.webp",
+  "S__4669544.webp",
+  "S__7299075.webp",
+  "S__7315476(1).webp",
+  "S__7315476.webp",
+  "S__7315477_0.webp",
+  "S__7315478_0.webp",
+  "S__7315479_0.webp",
+  "S__9568300.webp",
+  "S__9568301.webp",
+])
+
 async function getImages(): Promise<WorkImage[]> {
   const worksDir = path.join(process.cwd(), "public/images/works")
   let files: string[] = []
@@ -19,6 +49,7 @@ async function getImages(): Promise<WorkImage[]> {
     files = fs
       .readdirSync(worksDir)
       .filter((f) => /\.(jpg|jpeg|png|webp|gif)$/i.test(f))
+      .filter((f) => !excludedWorkImages.has(f))
       .sort()
   } catch {
     return []
