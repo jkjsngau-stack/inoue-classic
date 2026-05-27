@@ -45,14 +45,14 @@ const featuredWorks = [
     title: "施工事例",
     location: "北陸",
     category: "エクステリア",
-    image: "/images/works/S__15966213_0.webp",
+    image: "/images/works/S__16007212_0.webp",
   },
   {
     id: 2,
     title: "施工事例",
     location: "北陸",
     category: "モルタル造形",
-    image: "/images/works/S__15966220_0.webp",
+    image: "/images/works/S__16007218_0.webp",
   },
   {
     id: 3,
